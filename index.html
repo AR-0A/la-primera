@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Las marchas del 25N abren la jornada. También seguimos la campaña electoral, el impacto de la guerra entre Israel y Hamás en Gaza y los cuartos de final de la Copa Davis de tenis.">
+  <meta name="theme-color" content="#f9f7f1">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>La Primera · Miércoles, 25 de noviembre de 2026</title>
+  <style>:root {
+  color-scheme: light;
+  --papel: #f9f7f1;
+  --tinta: #201d1b;
+  --tenue: #625951;
+  --acento: #8e272d;
+  --linea: #d6cfc2;
+  --panel: #f0ebe0;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: system-ui, sans-serif;
+}
+
+:root[data-tema="oscuro"] {
+  color-scheme: dark;
+  --papel: #211e1d;
+  --tinta: #f4eee3;
+  --tenue: #c5b9ad;
+  --acento: #ffa19c;
+  --linea: #544940;
+  --panel: #2c2623;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: 1rem; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--sans); }
+a { color: inherit; text-underline-offset: .2em; }
+button, input { font: inherit; color: inherit; }
+button, summary { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
+h1, h2, h3, p, figure { margin: 0; }
+.ancho { width: min(100% - 4rem, 72rem); margin-inline: auto; }
+.solo-lector, .salto:not(:focus) { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.salto:focus { position: absolute; z-index: 1; top: .5rem; left: .5rem; padding: .5rem 1rem; background: var(--papel); }
+
+.cabecera { margin-top: 1.15rem; border-top: 3px solid var(--tinta); }
+.cabecera-linea { display: flex; justify-content: space-between; align-items: center; min-height: 2.8rem; gap: .5rem; font-size: .84rem; color: var(--tenue); }
+.utilidades { display: flex; gap: .95rem; align-items: center; }
+.atajo, .utilidades a, .navegacion a, .marca, .marca-pie { text-decoration: none; }
+.atajo { color: var(--acento); font-weight: 700; }
+.utilidades a:hover, .navegacion a:hover, .indice a:hover { color: var(--acento); }
+.tema { padding: .35rem; border: 1px solid var(--linea); border-radius: 50%; min-width: 2.15rem; min-height: 2.15rem; background: none; font-size: 1rem; line-height: 1; }
+.marca { display: block; width: fit-content; margin: -.25rem auto 1rem; font: 700 clamp(2.85rem, 15vw, 6.5rem)/.95 var(--serif); letter-spacing: -.083em; padding-right: .08em; }
+.marca span, .marca-pie span { color: var(--acento); }
+.navegacion { display: flex; flex-wrap: wrap; gap: .05rem 1.65rem; align-items: center; justify-content: center; border-block: 1px solid var(--linea); font-size: .88rem; font-weight: 650; }
+.navegacion a { display: grid; align-items: center; min-height: 2.8rem; }
+.navegacion .edicion-enlace, .navegacion .glosario-enlace { color: var(--acento); }
+.fecha-edicion { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .4rem 1rem; align-items: baseline; padding-block: 1.05rem; font-size: .89rem; color: var(--tenue); }
+.fecha-datos { display: flex; flex-wrap: wrap; gap: .25rem .85rem; align-items: baseline; }
+.fecha-dia { color: var(--tinta); font-weight: 650; }
+.aviso { padding: .7rem 1rem; background: var(--panel); border-left: 3px solid var(--acento); margin-bottom: 1rem; font-size: .93rem; }
+
+.apertura { max-width: 48rem; margin-inline: auto; }
+.etiqueta { display: block; color: var(--acento); font-size: .81rem; font-weight: 750; letter-spacing: .095em; text-transform: uppercase; }
+.noticia h3 { font: 700 clamp(1.55rem, 3vw, 2rem)/1.1 var(--serif); letter-spacing: -.035em; margin: .45rem 0 .75rem; text-wrap: pretty; }
+.principal h2 { font: 700 clamp(2.4rem, 5.7vw, 4.4rem)/.98 var(--serif); letter-spacing: -.062em; margin: .4rem 0 .95rem; text-wrap: balance; }
+.texto { font: 1.125rem/1.55 var(--serif); }
+.principal .texto { font-size: clamp(1.13rem, 2.15vw, 1.32rem); line-height: 1.45; }
+.contexto { font-size: .94rem; line-height: 1.55; margin-top: .7rem; color: var(--tenue); }
+.contexto strong { color: var(--tinta); font-weight: 700; }
+.principal figure { margin-top: 1.05rem; }
+.principal img { width: 100%; height: auto; display: block; }
+figcaption { font-size: .75rem; line-height: 1.4; color: var(--tenue); margin-top: .4rem; }
+.fuentes { font-size: .84rem; margin-top: .8rem; color: var(--tenue); }
+.fuentes summary { min-height: 2rem; width: fit-content; padding-block: .3rem; font-weight: 650; }
+.fuentes ul { margin: .25rem 0 .3rem; padding-left: 1.25rem; line-height: 1.85; }
+.fuentes a:hover, .ficha-fuente, .termino { color: var(--acento); }
+.termino { text-decoration-style: dotted; font-weight: 700; }
+.contraste { font-size: .91rem; line-height: 1.5; margin: .3rem 0 .5rem; }
+.correccion { color: var(--tenue); margin-top: .6rem; font-size: .85rem; }
+
+.indice { background: var(--panel); border-top: 3px solid var(--acento); margin-top: 2.4rem; padding: clamp(1.05rem, 2.5vw, 1.55rem); }
+.indice h2 { font: 700 clamp(1.8rem, 3.1vw, 2.15rem)/1.1 var(--serif); letter-spacing: -.045em; margin-top: .15rem; }
+.indice ol { margin: .9rem 0 0; padding: 0; list-style: none; }
+.indice-seccion { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .55rem; border-top: 1px solid var(--linea); padding-block: .8rem; }
+.indice-seccion:last-child { padding-bottom: .15rem; }
+.numero { color: var(--acento); font: 700 1.25rem/1.3 var(--serif); }
+.indice h3 { font-size: .81rem; letter-spacing: .075em; text-transform: uppercase; }
+.indice-noticias { list-style: none; margin: 0; padding: 0; }
+.indice-noticias a { display: block; width: fit-content; padding-block: .3rem; text-decoration: none; font: 1.065rem/1.35 var(--serif); }
+
+.rejilla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(1.5rem, 4vw, 3rem); }
+.bloque { margin-top: 2.4rem; border-top: 2px solid var(--tinta); padding-top: .75rem; }
+.bloque > h2 { font: 700 2rem/1.05 var(--serif); letter-spacing: -.045em; margin-bottom: .75rem; }
+.bloque .noticia + .noticia { border-top: 1px solid var(--linea); margin-top: .85rem; padding-top: .8rem; }
+.glosario { margin-top: 3rem; }
+.buscador { display: grid; max-width: 30rem; gap: .4rem; color: var(--tenue); font-size: .9rem; font-weight: 650; margin: 1rem 0; }
+.buscador input { width: 100%; min-height: 2.8rem; background: var(--papel); border: 1px solid var(--linea); padding: .45rem .75rem; font-size: 1rem; }
+.filtro-glosario { display: flex; width: fit-content; align-items: center; gap: .45rem; min-height: 2.75rem; color: var(--tenue); font-size: .9rem; cursor: pointer; margin-block: -.45rem .45rem; }
+.filtro-glosario input { accent-color: var(--acento); width: 1.05rem; height: 1.05rem; }
+.terminos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; }
+.entrada { border: 1px solid var(--linea); padding: .7rem .85rem; }
+.entrada:target { border-color: var(--acento); }
+.entrada summary { font-weight: 650; min-height: 1.7rem; }
+.entrada p { line-height: 1.55; margin-top: .55rem; }
+.entrada a { color: var(--acento); }
+.entrada .meta { font-size: .85rem; color: var(--tenue); }
+.archivo { padding-left: 1.15rem; line-height: 1.8; }
+.pie { display: flex; gap: 1.25rem 2.25rem; align-items: baseline; border-top: 1px solid var(--linea); margin-top: 3rem; padding: 1rem 0 2.5rem; color: var(--tenue); }
+.marca-pie { font: 700 1.55rem/1 var(--serif); white-space: nowrap; color: var(--tinta); letter-spacing: -.05em; }
+.pie details { font-size: .88rem; max-width: 70ch; }
+.pie p { margin-top: .55rem; line-height: 1.5; }
+.ficha { padding: 0; color: var(--tinta); background: var(--papel); border: 1px solid var(--linea); border-top: 4px solid var(--acento); width: min(34rem, calc(100% - 2rem)); max-height: min(85vh, 40rem); overflow: auto; }
+.ficha::backdrop { background: #15100c99; }
+.ficha-interior { padding: 1.3rem 1.5rem 1.6rem; }
+.ficha-cabecera { display: flex; justify-content: space-between; align-items: center; }
+.cerrar { background: none; border: 1px solid var(--linea); border-radius: 50%; width: 2.45rem; height: 2.45rem; font-size: 1.5rem; line-height: 1; }
+.ficha h2 { font: 700 2rem/1.05 var(--serif); }
+.ficha p { line-height: 1.55; margin-block: .55rem; }
+.ficha-ampliacion { color: var(--tenue); font-size: .9rem; }
+
+@media (max-width: 50rem) {
+  .ancho { width: min(100% - 2.25rem, 72rem); }
+  .terminos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 34rem) {
+  .cabecera { margin-top: .6rem; }
+  .cabecera-linea { min-height: 2.5rem; }
+  .marca { margin: .35rem auto .85rem; }
+  .navegacion { justify-content: flex-start; gap: 0 .75rem; font-size: .82rem; }
+  .navegacion a { min-height: 2.65rem; }
+  .fecha-edicion { font-size: .83rem; }
+  .rejilla, .terminos { grid-template-columns: 1fr; }
+  .pie { flex-wrap: wrap; }
+  .ficha { margin: auto 0 0; width: 100%; max-width: none; border-radius: .75rem .75rem 0 0; }
+  .ficha-interior { padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
+}
+</style>
+</head>
+<body data-base="">
+  <a class="salto" href="#contenido">Ir al contenido</a>
+  <header class="cabecera ancho">
+    <div class="cabecera-linea">
+      <a class="atajo" href="#titulo-indice">Resumen</a>
+      <div class="utilidades">
+        <a href="#archivo">Archivo</a>
+        <button class="tema" type="button" aria-pressed="false" hidden><span aria-hidden="true">◐</span><span class="solo-lector">Modo oscuro</span></button>
+      </div>
+    </div>
+    <a class="marca" href="index.html" aria-label="La Primera, última edición">La Primera<span>.</span></a>
+    <nav class="navegacion" aria-label="Secciones de esta edición">
+      <a class="edicion-enlace" href="#contenido">Edición</a>
+      <a href="#marchas-25n">España</a><a href="#seccion-mundo">Mundo</a><a href="#seccion-politica">Política</a><a href="#seccion-economia">Economía</a><a href="#seccion-deportes">Deportes</a>
+      <a class="glosario-enlace" href="#glosario">Glosario</a>
+    </nav>
+  </header>
+  <main id="contenido" class="ancho">
+    <div class="fecha-edicion">
+      <div class="fecha-datos">
+        <time class="fecha-dia" datetime="2026-11-25">Miércoles, 25 de noviembre de 2026</time>
+        <span>Actualizada <time class="fecha-hora" datetime="2026-11-25T12:04:00+01:00">a las 12:04</time></span>
+      </div>
+      <span>3 min de lectura</span>
+    </div>
+    <p class="aviso" hidden>Esta es la última edición revisada disponible.</p>
+    <h1 class="solo-lector">Edición del Miércoles, 25 de noviembre de 2026</h1>
+    <div class="apertura">
+      <article class="noticia principal" id="marchas-25n"><span class="etiqueta">España · Portada</span><h2>Marchas en toda España contra la violencia machista</h2><p class="texto">Colectivos feministas han convocado manifestaciones en varias ciudades por el <a class="termino" href="#termino-25n">25N</a>. En Madrid, una marcha saldrá a las 18:30 del cruce de Alcalá con Gran Vía y la otra a las 19:00 de Neptuno. El Ayuntamiento prevé cortes en el centro entre las 18:00 y las 22:00, aproximadamente.</p><p class="contexto"><strong>Importancia.</strong> Las movilizaciones reclaman medidas de prevención de la violencia machista y de protección para quienes la sufren.</p><details class="fuentes"><summary>Fuentes y contexto (3)</summary><ul><li><a href="https://efe.com/espana/2026-11-25/movimiento-feminista-25n-campana-electoral/">EFE</a> · Cobertura</li><li><a href="https://elpais.com/sociedad/2026-11-23/el-feminismo-reivindica-el-fin-de-la-violencia-machista-por-toda-espana-horarios-y-puntos-de-partida-para-las-movilizaciones-del-25n.html">El País</a> · Cobertura</li><li><a href="https://www.madrid.es/portales/munimadrid/es/Inicio/Movilidad-y-transportes/Oficina-de-la-bici/Madrid-en-bici/Aparca-bici/Solicitud-de-aparca-bici/Incidencias-de-trafico-debidas-a-manifestaciones/?vgnextchannel=7470f69a8e9f9210VgnVCM2000000c205a0aRCRD&amp;vgnextfmt=default&amp;vgnextoid=2494640ca9d71a10VgnVCM2000000f921e388RCRD">Ayuntamiento de Madrid</a> · Fuente primaria</li></ul></details><figure><img src="25n-madrid-2023.jpg" alt="Manifestantes con pancartas durante la marcha del 25N en Madrid de 2023" fetchpriority="high"><figcaption>Marcha del 25N en Madrid, 2023 · Archivo. <a href="https://commons.wikimedia.org/wiki/File:Manifestacion_25N_2023_Madrid_01.jpg">Nemo</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></figcaption></figure></article>
+    </div>
+    <div class="rejilla"><section id="seccion-mundo" class="bloque"><h2>Mundo</h2><article class="noticia" id="amnistia-gaza"><h3>Amnistía denuncia el daño de la guerra a las mujeres en Gaza</h3><p class="texto">Amnistía Internacional publicó un informe sobre cómo la guerra entre Israel y Hamás ha afectado a mujeres y niñas en Gaza. El informe se apoya en 228 entrevistas, entre ellas a mujeres y niñas, profesionales sanitarios y personal humanitario. La organización documenta dificultades para recibir atención durante el embarazo y el parto, y pide a la <a class="termino" href="#termino-cpi">Corte Penal Internacional</a> que investigue posibles crímenes.</p><p class="contexto"><strong>Importancia.</strong> La ofensiva israelí en Gaza siguió a los ataques de Hamás y otros grupos armados palestinos en Israel el 7 de octubre de 2023. El informe recoge casos posteriores al alto el fuego de octubre de 2025.</p><details class="fuentes"><summary>Fuentes y contexto (5)</summary><ul><li><a href="https://www.amnesty.org/en/documents/mde15/1636/2026/en/">Amnistía Internacional</a> · Informe original</li><li><a href="https://www.es.amnesty.org/en-que-estamos/noticias/noticia/articulo/israel-y-el-territorio-palestino-ocupado-las-mujeres-y-las-ninas-sufren-las-devastadoras-consecuencias-del-genocidio-israeli-en-gaza/">Amnistía Internacional</a> · Resumen en español</li><li><a href="https://www.rtve.es/noticias/20261125/amnistia-documenta-violencia-contra-mujeres-gaza-denuncia-genocidio-continua-tras-tregua/17326423.shtml">RTVE</a> · Cobertura</li><li><a href="https://cadenaser.com/nacional/2026/11/25/amnistia-internacional-denuncia-el-impacto-de-la-violencia-israeli-en-las-mujeres-de-gaza-cadena-ser/">Cadena SER</a> · Cobertura</li><li><a href="https://www.un.org/unispal/document/commission-of-inquiry-pr-hrc-19jun24/">Naciones Unidas</a> · Contexto del conflicto</li></ul></details></article></section><section id="seccion-politica" class="bloque"><h2>Política</h2><article class="noticia" id="debate-29n"><h3>La vivienda y los pactos marcan la recta final del 29N</h3><p class="texto">Ocho portavoces parlamentarios debatieron el lunes en RTVE antes de las generales del domingo. Discutieron sobre vivienda, empleo y posibles acuerdos. El PP defendió agilizar la construcción y el PSOE reivindicó sus medidas de vivienda.</p><p class="contexto"><strong>Importancia.</strong> Del reparto de <a class="termino" href="#termino-escanos">escaños</a> del domingo dependerán los apoyos que pueda reunir cada candidato a la <a class="termino" href="#termino-investidura">investidura</a>. La primera votación requiere 176 votos a favor. Si hay una segunda, basta con que los síes superen a los noes.</p><details class="fuentes"><summary>Fuentes y contexto (4)</summary><p class="contraste"><strong>Cómo se contó.</strong> elDiario.es destaca los posibles bloques de apoyo. El Independiente da más peso a los reproches cruzados sobre la gestión del Gobierno. El vídeo de RTVE permite comprobar las intervenciones.</p><ul><li><a href="https://www.eldiario.es/politica/ultima-hora-elecciones-generales-actualidad-politica-directo_6_13684896.amp.html">elDiario.es</a> · Perspectiva progresista</li><li><a href="https://www.elindependiente.com/espana/2026/11/23/la-izquierda-hace-frente-comun-contra-pp-y-vox-que-senalan-a-los-complices-de-sanchez-en-el-debate-a-ocho/amp/">El Independiente</a> · Otra lectura editorial</li><li><a href="https://www.rtve.es/noticias/20261123/debate-electoral-ocho-directo-elecciones-2026/17325931.shtml">RTVE</a> · Debate original y crónica</li><li><a href="https://www.congreso.es/es/cem/sesiones-de-investidura">Congreso de los Diputados</a> · Cómo se vota la investidura</li></ul></details></article></section><section id="seccion-economia" class="bloque"><h2>Economía</h2><article class="noticia" id="ine-salarios"><h3>El INE tiene prevista la publicación del reparto salarial de 2025</h3><p class="texto">El <a class="termino" href="#termino-ine">INE</a> tiene previsto publicar este miércoles los <a class="termino" href="#termino-decil">deciles salariales</a> del empleo principal en 2025, elaborados con datos de la <a class="termino" href="#termino-epa">EPA</a>. La estadística ordena los sueldos y los divide en diez grupos.</p><p class="contexto"><strong>Importancia.</strong> El primer grupo reúne al 10 % de las personas asalariadas con los sueldos más bajos. Con este desglose se puede ver, por ejemplo, a partir de qué sueldo empieza el 10 % que más cobra.</p><details class="fuentes"><summary>Fuentes y contexto (3)</summary><ul><li><a href="https://www.ine.es/dynt3/Calendario/calenHTML.htm">INE</a> · Calendario oficial</li><li><a href="https://www.infobae.com/espana/agencias/2026/11/24/temas-del-dia-de-efe-espana-del-miercoles-25-de-noviembre-de-2026/">EFE</a> · Agenda informativa</li><li><a href="https://www.ine.es/dyngs/Prensa/dsEPA2024.htm">INE</a> · Metodología de la estadística</li></ul></details></article></section><section id="seccion-deportes" class="bloque"><h2>Deportes</h2><article class="noticia" id="davis-espana"><span class="etiqueta">Tenis</span><h3>España juega el jueves ante Austria en la Copa Davis</h3><p class="texto">España se enfrenta a Austria este jueves 26 en los cuartos de final de la Copa Davis, en Bolonia. La eliminatoria está prevista para la sesión de tarde y empezará como pronto a las 17:00, hora peninsular.</p><p class="contexto"><strong>Importancia.</strong> La Copa Davis es un torneo de tenis por selecciones nacionales. Quien gane jugará el sábado en semifinales contra el vencedor del cruce entre Gran Bretaña y Alemania.</p><details class="fuentes"><summary>Fuentes y contexto (3)</summary><ul><li><a href="https://www.daviscup.com/es/noticias/donde-ver-la-final-8-de-la-copa-davis-by-generali">Copa Davis</a> · Calendario oficial</li><li><a href="https://as.com/tenis/copa_davis/espana-ya-tiene-fecha-para-su-cruce-con-austria-en-las-finales-de-copa-davis-f202609-n/">AS</a> · Cobertura</li><li><a href="https://www.daviscup.com/en/news/schedule-confirmed-for-davis-cup-by-generali-final-8">Copa Davis</a> · Cuadro de semifinales</li></ul></details></article><article class="noticia" id="madrid-psv"><span class="etiqueta">Fútbol</span><h3>El Real Madrid golea al PSV y sigue invicto en la Champions</h3><p class="texto">El Real Madrid ganó 5–1 al PSV Eindhoven el martes en el Santiago Bernabéu. Con el resultado suma cinco victorias en cinco jornadas de la fase de liga de la Champions.</p><p class="contexto"><strong>Importancia.</strong> Los ocho primeros al final de esta fase pasan directamente a octavos. Los equipos que terminen del noveno al vigesimocuarto puesto tendrán que disputar una eliminatoria adicional.</p><details class="fuentes"><summary>Fuentes y contexto (3)</summary><ul><li><a href="https://www.uefa.com/uefachampionsleague/news/02a8-2176fa83582b-d99f0b27f405-1000--champions-league-league-phase-fixtures-and-results/">UEFA</a> · Resultados oficiales</li><li><a href="https://www.realmadrid.com/es-ES/noticias/futbol/primer-equipo/cronicas/cronica-real-madrid-psv-j5-champions-league-24-11-2026/">Real Madrid</a> · Crónica del club</li><li><a href="https://documents.uefa.com/r/Regulations-of-the-UEFA-Champions-League-2026/27/Article-17-Match-system-league-phase-Online">UEFA</a> · Formato de la competición</li></ul></details></article></section></div>
+    <section aria-labelledby="titulo-indice" class="indice">
+      <h2 id="titulo-indice">Resumen</h2>
+      <span class="etiqueta">En 60 segundos</span>
+      <ol role="list"><li class="indice-seccion"><span class="numero" aria-hidden="true">01</span><div><h3>España</h3><ul class="indice-noticias" role="list"><li><a href="#marchas-25n">Actos y marchas por el 25N en varias ciudades.</a></li></ul></div></li><li class="indice-seccion"><span class="numero" aria-hidden="true">02</span><div><h3>Mundo</h3><ul class="indice-noticias" role="list"><li><a href="#amnistia-gaza">Amnistía documenta cómo la guerra entre Israel y Hamás afecta a mujeres y niñas en Gaza.</a></li></ul></div></li><li class="indice-seccion"><span class="numero" aria-hidden="true">03</span><div><h3>Política</h3><ul class="indice-noticias" role="list"><li><a href="#debate-29n">Ocho partidos debaten sobre vivienda y pactos antes de las urnas.</a></li></ul></div></li><li class="indice-seccion"><span class="numero" aria-hidden="true">04</span><div><h3>Economía</h3><ul class="indice-noticias" role="list"><li><a href="#ine-salarios">El INE prevé publicar cómo se repartieron los salarios en 2025.</a></li></ul></div></li><li class="indice-seccion"><span class="numero" aria-hidden="true">05</span><div><h3>Deportes</h3><ul class="indice-noticias" role="list"><li><a href="#davis-espana"><strong>Tenis.</strong> España juega el jueves contra Austria en los cuartos de la Copa Davis, a partir de las 17:00, hora peninsular.</a></li><li><a href="#madrid-psv"><strong>Fútbol.</strong> El Real Madrid gana 5–1 al PSV y suma su quinta victoria en la Champions.</a></li></ul></div></li></ol>
+    </section>
+    <section id="glosario" class="glosario bloque" aria-labelledby="titulo-glosario">
+      <h2 id="titulo-glosario">Glosario</h2>
+      <div class="controles-glosario" hidden>
+        <label class="buscador">Buscar en el glosario <input type="search" placeholder="INE, IPC, IBEX 35…" autocomplete="off"></label>
+        <label class="filtro-glosario"><input type="checkbox"> Solo términos de esta edición</label>
+      </div>
+      <p id="sin-terminos" role="status" hidden>No se han encontrado términos.</p>
+      <div class="terminos"><details class="entrada" id="termino-25n"><summary>25N</summary><p class="meta"><span class="ampliacion">25 de noviembre</span> · Sociedad</p><p class="definicion">Día Internacional de la Eliminación de la Violencia contra la Mujer. Se conmemora cada 25 de noviembre con actos de sensibilización y movilizaciones.</p><p class="meta"><a href="https://www.un.org/es/observances/ending-violence-against-women-day">Naciones Unidas</a></p></details><details class="entrada" id="termino-bce"><summary>BCE</summary><p class="meta"><span class="ampliacion">Banco Central Europeo</span> · Economía</p><p class="definicion">Institución que dirige la política monetaria de la zona euro. Sus decisiones sobre los tipos de interés influyen en el coste de los préstamos y en la remuneración del ahorro.</p><p class="meta"><a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.es.html">Banco Central Europeo</a></p></details><details class="entrada" id="termino-cpi"><summary>Corte Penal Internacional</summary><p class="meta"><span class="ampliacion">CPI</span> · Mundo</p><p class="definicion">Tribunal permanente con sede en La Haya que investiga y, cuando procede, juzga a personas por crímenes como el genocidio, los crímenes de lesa humanidad y los crímenes de guerra.</p><p class="meta"><a href="https://www.icc-cpi.int/about/the-court">Corte Penal Internacional</a></p></details><details class="entrada" id="termino-decil"><summary>Decil salarial</summary><p class="meta"><span class="ampliacion">Distribución de los salarios</span> · Economía</p><p class="definicion">Para estudiar cómo se reparten los sueldos se ordenan de menor a mayor y se dividen en diez grupos con el mismo número de personas. El primer grupo reúne al 10 % con los sueldos más bajos.</p><p class="meta"><a href="https://www.ine.es/dyngs/Prensa/dsEPA2024.htm">INE</a></p></details><details class="entrada" id="termino-epa"><summary>EPA</summary><p class="meta"><span class="ampliacion">Encuesta de Población Activa</span> · Economía</p><p class="definicion">Encuesta trimestral del INE a hogares que estima cuántas personas trabajan, cuántas buscan empleo y cuántas quedan fuera de la población activa.</p><p class="meta"><a href="https://ine.es/prensa/epa_prensa.htm">INE</a></p></details><details class="entrada" id="termino-escanos"><summary>Escaño</summary><p class="meta"><span class="ampliacion">Representación parlamentaria</span> · Política</p><p class="definicion">Puesto que ocupa una persona elegida en una cámara legislativa. En el Congreso español hay 350. El reparto de estos puestos determina qué apoyos pueden reunir las distintas formaciones.</p><p class="meta"><a href="https://www.congreso.es/es/cem/sesiones-de-investidura">Congreso de los Diputados</a></p></details><details class="entrada" id="termino-ibex"><summary>IBEX 35</summary><p class="meta"><span class="ampliacion">Índice de referencia de la bolsa española</span> · Economía</p><p class="definicion">Resume la evolución en bolsa de 35 empresas seleccionadas principalmente por lo fácil que resulta comprar y vender sus acciones. Las compañías de mayor valor bursátil suelen pesar más en el índice.</p><p class="meta"><a href="https://www.bolsasymercados.es/es/bme-exchange/preguntas-frecuentes/que-es-ibex35.html">BME</a></p></details><details class="entrada" id="termino-ine"><summary>INE</summary><p class="meta"><span class="ampliacion">Instituto Nacional de Estadística</span> · Instituciones</p><p class="definicion">Organismo público español que elabora estadísticas oficiales sobre la población, el empleo, los salarios y los precios, entre otros temas.</p><p class="meta"><a href="https://www.ine.es/dyngs/INE/index.htm?cid=498">INE · Quiénes somos</a></p></details><details class="entrada" id="termino-investidura"><summary>Investidura</summary><p class="meta"><span class="ampliacion">Elección de la presidencia del Gobierno</span> · Política</p><p class="definicion">Votación en la que el Congreso decide si otorga su confianza a la persona candidata a presidir el Gobierno. La primera votación exige mayoría absoluta. La segunda, si se celebra, requiere más votos a favor que en contra.</p><p class="meta"><a href="https://www.congreso.es/es/cem/sesiones-de-investidura">Congreso de los Diputados</a></p></details><details class="entrada" id="termino-ipc"><summary>IPC</summary><p class="meta"><span class="ampliacion">Índice de Precios de Consumo</span> · Economía</p><p class="definicion">Mide cómo cambia el precio de una cesta de bienes y servicios representativa del consumo de los hogares. Su variación respecto al mismo mes del año anterior se usa para seguir la inflación.</p><p class="meta"><a href="https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&amp;cid=1254736176802&amp;idp=1254735976607&amp;menu=faq">INE</a></p></details></div>
+    </section>
+    <section id="archivo" class="bloque" aria-labelledby="titulo-archivo">
+      <h2 id="titulo-archivo">Archivo</h2>
+      <ul class="archivo"><li><a href="2026-11-25.html">Miércoles, 25 de noviembre de 2026</a></li></ul>
+    </section>
+  </main>
+  <footer class="ancho pie">
+    <a class="marca-pie" href="index.html">La Primera<span>.</span></a>
+    <details id="metodo">
+      <summary>Cómo se hace esta edición</summary>
+      <p>La selección se ordena por relevancia. Cada pieza enlaza las fuentes consultadas. En política mostramos, cuando están disponibles, las diferencias de enfoque y la fuente original. Los anuncios y las convocatorias se atribuyen a quien los hace.</p>
+      <p>La fecha indica cuándo se preparó la edición. Una revisión posterior se indica junto a la pieza corregida.</p>
+    </details>
+  </footer>
+  <dialog class="ficha" aria-labelledby="ficha-nombre">
+    <div class="ficha-interior">
+      <div class="ficha-cabecera"><span class="etiqueta">Glosario</span><form method="dialog"><button class="cerrar" type="submit" aria-label="Cerrar definición">×</button></form></div>
+      <h2 id="ficha-nombre"></h2>
+      <p class="ficha-ampliacion"></p>
+      <p class="ficha-definicion"></p>
+      <a class="ficha-fuente"></a>
+    </div>
+  </dialog>
+  <script>const root = document.documentElement;
+const tema = document.querySelector('.tema');
+const preferencia = window.matchMedia('(prefers-color-scheme: dark)');
+let eleccion;
+try { eleccion = localStorage.getItem('la-primera-tema'); } catch { /* lectura local */ }
+
+function aplicarTema(oscuro) {
+  root.dataset.tema = oscuro ? 'oscuro' : 'claro';
+  tema.setAttribute('aria-pressed', String(oscuro));
+  document.querySelector('meta[name="theme-color"]').content = oscuro ? '#211e1d' : '#f9f7f1';
+}
+
+aplicarTema(eleccion ? eleccion === 'oscuro' : preferencia.matches);
+tema.hidden = false;
+tema.addEventListener('click', () => {
+  aplicarTema(root.dataset.tema !== 'oscuro');
+  eleccion = root.dataset.tema;
+  try { localStorage.setItem('la-primera-tema', eleccion); } catch { /* lectura local */ }
+});
+preferencia.addEventListener('change', ({matches}) => {
+  if (!eleccion) aplicarTema(matches);
+});
+
+const ficha = document.querySelector('.ficha');
+const enlacesGlosario = [...document.querySelectorAll('.termino')];
+for (const enlace of enlacesGlosario) {
+  enlace.addEventListener('click', (event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const entrada = document.getElementById(enlace.hash.slice(1));
+    if (!entrada || typeof ficha.showModal !== 'function') {
+      if (entrada) entrada.open = true;
+      return;
+    }
+    event.preventDefault();
+    ficha.querySelector('#ficha-nombre').textContent = entrada.querySelector('summary').textContent;
+    ficha.querySelector('.ficha-ampliacion').textContent = entrada.querySelector('.ampliacion').textContent;
+    ficha.querySelector('.ficha-definicion').textContent = entrada.querySelector('.definicion').textContent;
+    const fuente = entrada.querySelector('a');
+    const destino = ficha.querySelector('.ficha-fuente');
+    destino.textContent = fuente.textContent;
+    destino.href = fuente.href;
+    ficha.showModal();
+  });
+}
+ficha.addEventListener('click', (event) => {
+  if (event.target === ficha) ficha.close();
+});
+
+const aviso = document.querySelector('.aviso');
+if (aviso) {
+  const partes = new Intl.DateTimeFormat('es', {timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit'}).formatToParts(new Date());
+  const fecha = Object.fromEntries(partes.map(({type, value}) => [type, value]));
+  aviso.hidden = document.querySelector('.fecha-dia').dateTime === `${fecha.year}-${fecha.month}-${fecha.day}`;
+}
+
+const controlesGlosario = document.querySelector('.controles-glosario');
+const buscador = controlesGlosario.querySelector('input[type="search"]');
+const filtroEdicion = controlesGlosario.querySelector('input[type="checkbox"]');
+const entradas = [...document.querySelectorAll('.entrada')];
+const terminosEdicion = new Set(enlacesGlosario.map((enlace) => enlace.hash.slice(1)));
+const normalizar = (texto) => texto.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+function filtrarGlosario() {
+  const consulta = normalizar(buscador.value.trim());
+  for (const entrada of entradas) {
+    const encajaEnEdicion = !filtroEdicion.checked || terminosEdicion.has(entrada.id);
+    entrada.hidden = !encajaEnEdicion || !normalizar(entrada.textContent).includes(consulta);
+  }
+  document.querySelector('#sin-terminos').hidden = entradas.some((entrada) => !entrada.hidden);
+}
+controlesGlosario.hidden = false;
+buscador.addEventListener('input', filtrarGlosario);
+filtroEdicion.addEventListener('change', filtrarGlosario);
+filtrarGlosario();
+
+if ('serviceWorker' in navigator && isSecureContext && location.protocol !== 'file:') {
+  navigator.serviceWorker.register(`${document.body.dataset.base}sw.js`).catch(() => {});
+}
+</script>
+</body>
+</html>
