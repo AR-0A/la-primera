@@ -1,0 +1,124 @@
+name: La Primera · Edición diaria
+
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: Acción para esta ejecución
+        type: choice
+        options: [comprobar, publicar, republicar-edicion-revisada]
+        default: comprobar
+
+permissions:
+  contents: read
+
+concurrency:
+  group: la-primera-pages
+  cancel-in-progress: false
+
+jobs:
+  preparar:
+    if: github.repository == 'AR-0A/la-primera' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 17
+    outputs:
+      publicar: ${{ steps.edicion.outputs.publicar }}
+    env:
+      MODO: ${{ github.event_name == 'schedule' && 'publicar' || inputs.modo }}
+      PORTADA: https://ar-0a.github.io/la-primera/
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: Recoger fuentes de la mañana
+        if: inputs.modo != 'republicar-edicion-revisada'
+        run: |
+          mkdir editor
+          unzip -q generador-la-primera.zip -d editor
+          python3 editor/diario.py recoger
+
+      - name: Iniciar el modelo local para el contraste
+        if: inputs.modo != 'republicar-edicion-revisada'
+        run: |
+          docker run --detach --rm --name la-primera-ollama \
+            --publish 127.0.0.1:11434:11434 \
+            ollama/ollama:0.40.18@sha256:1cabd20e1762a7a8444bf4a7110b346d923cd77ab6c97c984434140638c913ec
+          curl -fsS --retry 20 --retry-delay 2 --retry-all-errors --connect-timeout 2 --max-time 5 http://127.0.0.1:11434/api/version
+          docker exec la-primera-ollama ollama pull qwen2.5:7b
+
+      - name: Contrastar fuentes y preparar la portada
+        id: edicion
+        run: |
+          fecha_portada() {
+            python3 - "$1" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          page = Path(sys.argv[1]).read_text(encoding='utf-8')
+          match = re.search(r'<time class="fecha-dia" datetime="(\d{4}-\d{2}-\d{2})">', page)
+          if not match:
+              raise SystemExit('Falta una fecha de edición válida.')
+          print(match[1])
+          PY
+          }
+
+          if [[ "$MODO" == republicar-edicion-revisada ]]; then
+            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' "$PORTADA" -o "$RUNNER_TEMP/portada-publica.html"
+            publicada=$(fecha_portada "$RUNNER_TEMP/portada-publica.html")
+            inicial=$(fecha_portada index.html)
+            if [[ "$inicial" != "$publicada" ]]; then
+              echo 'La portada pública es de otra edición. Se mantiene.'
+              exit 0
+            fi
+            mkdir publicacion
+            cp -- index.html "$inicial.html" icon-192.png icon-512.png manifest.webmanifest sw.js publicacion/
+            for imagen in ./*.jpg ./*.webp; do
+              if [[ -f "$imagen" ]]; then
+                cp -- "$imagen" publicacion/
+              fi
+            done
+          else
+            python3 editor/edicion_automatica.py editor/.local/????-??-??.json --generar
+            if [[ ! -s editor/dist/index.html ]]; then
+              echo 'Ninguna noticia superó el contraste. Se mantiene la última edición.'
+              exit 0
+            fi
+            if [[ "$MODO" != publicar ]]; then
+              echo 'Comprobación terminada. Se ha generado una portada con las noticias admitidas.'
+              exit 0
+            fi
+            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' "$PORTADA" -o "$RUNNER_TEMP/portada-publica.html"
+            publicada=$(fecha_portada "$RUNNER_TEMP/portada-publica.html")
+            nueva=$(fecha_portada editor/dist/index.html)
+            if [[ "$nueva" < "$publicada" || "$nueva" == "$publicada" ]]; then
+              echo 'La web ya tiene una edición con esa fecha o posterior. Se mantiene.'
+              exit 0
+            fi
+            mv -- editor/dist publicacion
+          fi
+          echo 'publicar=true' >> "$GITHUB_OUTPUT"
+
+      - name: Entregar solo la web para su publicación
+        if: steps.edicion.outputs.publicar == 'true'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: publicacion
+          retention-days: 1
+
+  publicar:
+    if: needs.preparar.outputs.publicar == 'true'
+    needs: preparar
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Publicar la portada en GitHub Pages
+        id: despliegue
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
