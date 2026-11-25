@@ -1,6 +1,9 @@
 name: La Primera · Edición diaria
 
 on:
+  schedule:
+    - cron: '30 5 * * *'
+      timezone: Europe/Madrid
   workflow_dispatch:
     inputs:
       modo:
