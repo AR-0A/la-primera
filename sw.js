@@ -1,6 +1,6 @@
 const scope = new URL(self.registration.scope);
 const prefix = 'la-primera-' + scope.pathname + '-';
-const cacheName = prefix + '35c7eb8a3ea8a21c';
+const cacheName = prefix + '414f2b5b9f998307';
 const assets = ["index.html", "icon-192.png", "icon-512.png", "manifest.webmanifest"];
 
 self.addEventListener('install', (event) => {
