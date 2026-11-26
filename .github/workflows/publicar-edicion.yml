@@ -2,8 +2,10 @@ name: La Primera · Edición diaria
 
 on:
   schedule:
-    - cron: '30 5 * * *'
-      timezone: Europe/Madrid
+    - cron: '30 3,4 * * *'
+    - cron: '17 4,5 * * *'
+    - cron: '43 5,6 * * *'
+    - cron: '13,23 11 26 11 *'
   workflow_dispatch:
     inputs:
       modo:
@@ -30,19 +32,53 @@ jobs:
       MODO: ${{ github.event_name == 'schedule' && 'publicar' || inputs.modo }}
       PORTADA: https://ar-0a.github.io/la-primera/
     steps:
+      - name: Comprobar si falta la edición de hoy
+        id: pendiente
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == schedule && "$(TZ=Europe/Madrid date +%H%M)" < '0530' ]]; then
+            echo 'Aún no son las 05:30 en la España peninsular.'
+            exit 0
+          fi
+          if [[ "$MODO" == publicar ]]; then
+            destino="$RUNNER_TEMP/portada-previa.html"
+            curl -fsS --retry 2 --max-time 20 -H 'Cache-Control: no-cache' \
+              "$PORTADA?consulta=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-previa" -o "$destino"
+            publicada=$(python3 - "$destino" <<'PY'
+          import re
+          import sys
+          from datetime import date
+          from pathlib import Path
+
+          html = Path(sys.argv[1]).read_text(encoding='utf-8')
+          match = re.search(r'<time class="fecha-dia" datetime="(\d{4}-\d{2}-\d{2})">', html)
+          if not match:
+              raise SystemExit('Falta una fecha de edición válida en la portada pública.')
+          print(date.fromisoformat(match[1]).isoformat())
+          PY
+            )
+            hoy=$(TZ=Europe/Madrid date +%F)
+            if [[ "$publicada" > "$hoy" || "$publicada" == "$hoy" ]]; then
+              echo "La portada ya muestra la edición del $publicada."
+              exit 0
+            fi
+            echo "Falta la edición del $hoy. La portada actual es del $publicada."
+          fi
+          echo 'generar=true' >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        if: steps.pendiente.outputs.generar == 'true'
         with:
           persist-credentials: false
 
       - name: Recoger fuentes de la mañana
-        if: inputs.modo != 'republicar-edicion-revisada'
+        if: steps.pendiente.outputs.generar == 'true' && inputs.modo != 'republicar-edicion-revisada'
         run: |
           mkdir editor
           unzip -q generador-la-primera.zip -d editor
           python3 editor/diario.py recoger
 
       - name: Iniciar el modelo local para el contraste
-        if: inputs.modo != 'republicar-edicion-revisada'
+        if: steps.pendiente.outputs.generar == 'true' && inputs.modo != 'republicar-edicion-revisada'
         run: |
           docker run --detach --rm --name la-primera-ollama \
             --publish 127.0.0.1:11434:11434 \
@@ -52,6 +88,7 @@ jobs:
 
       - name: Contrastar fuentes y preparar la portada
         id: edicion
+        if: steps.pendiente.outputs.generar == 'true'
         run: |
           fecha_portada() {
             python3 - "$1" <<'PY'
@@ -68,7 +105,8 @@ jobs:
           }
 
           if [[ "$MODO" == republicar-edicion-revisada ]]; then
-            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' "$PORTADA" -o "$RUNNER_TEMP/portada-publica.html"
+            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' \
+              "$PORTADA?consulta=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-final" -o "$RUNNER_TEMP/portada-publica.html"
             publicada=$(fecha_portada "$RUNNER_TEMP/portada-publica.html")
             inicial=$(fecha_portada index.html)
             if [[ "$inicial" != "$publicada" ]]; then
@@ -92,7 +130,8 @@ jobs:
               echo 'Comprobación terminada. Se ha generado una portada con las noticias admitidas.'
               exit 0
             fi
-            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' "$PORTADA" -o "$RUNNER_TEMP/portada-publica.html"
+            curl -fsS --retry 3 --max-time 20 -H 'Cache-Control: no-cache' \
+              "$PORTADA?consulta=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-final" -o "$RUNNER_TEMP/portada-publica.html"
             publicada=$(fecha_portada "$RUNNER_TEMP/portada-publica.html")
             nueva=$(fecha_portada editor/dist/index.html)
             if [[ "$nueva" < "$publicada" || "$nueva" == "$publicada" ]]; then
