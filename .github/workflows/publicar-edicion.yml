@@ -109,8 +109,9 @@ jobs:
               "$PORTADA?consulta=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT-final" -o "$RUNNER_TEMP/portada-publica.html"
             publicada=$(fecha_portada "$RUNNER_TEMP/portada-publica.html")
             inicial=$(fecha_portada index.html)
-            if [[ "$inicial" != "$publicada" ]]; then
-              echo 'La portada pública es de otra edición. Se mantiene.'
+            hoy=$(TZ=Europe/Madrid date +%F)
+            if [[ "$inicial" < "$publicada" || "$inicial" > "$hoy" ]]; then
+              echo 'La edición preparada está fuera del intervalo de publicación. Se mantiene la portada.'
               exit 0
             fi
             mkdir publicacion
