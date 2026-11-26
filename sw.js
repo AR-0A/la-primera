@@ -1,7 +1,7 @@
 const scope = new URL(self.registration.scope);
 const prefix = 'la-primera-' + scope.pathname + '-';
-const cacheName = prefix + '3ec53230da7a6781';
-const assets = ["index.html", "icon-192.png", "icon-512.png", "manifest.webmanifest", "25n-madrid-2023.jpg"];
+const cacheName = prefix + '35c7eb8a3ea8a21c';
+const assets = ["index.html", "icon-192.png", "icon-512.png", "manifest.webmanifest"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(assets.map((file) => new URL(file, scope)))));
